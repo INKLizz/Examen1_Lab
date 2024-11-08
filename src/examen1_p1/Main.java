@@ -71,10 +71,10 @@ public class Main extends JFrame {
                             JOptionPane.showMessageDialog(Main.this, "Nombre invalido.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
-
+                        if(opcion.equalsIgnoreCase("MOVIE")){
                         String precioStr = JOptionPane.showInputDialog(Main.this, "Agregar Precio del Item");
                         double precio;
-
+                        
                         try {
                             precio = Double.parseDouble(precioStr);
                             if (precio <= 0) {
@@ -85,16 +85,17 @@ public class Main extends JFrame {
                             JOptionPane.showMessageDialog(Main.this, "Precio invalido. Debe ser un numero.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
-
+                        if (opcion.equalsIgnoreCase("MOVIE")) {
+                            Movie movie = new Movie(codigo, nombre, precio);
+                            objetos.add(movie);
+                            JOptionPane.showMessageDialog(Main.this, "Película agregada exitosamente.");
+                        }
+                        }
                         if (opcion.equalsIgnoreCase("GAME")) {
                             Game game = new Game(codigo, nombre);
                             objetos.add(game);
                             JOptionPane.showMessageDialog(Main.this, "Juego agregado exitosamente.");
 
-                        } else if (opcion.equalsIgnoreCase("MOVIE")) {
-                            Movie movie = new Movie(codigo, nombre, precio);
-                            objetos.add(movie);
-                            JOptionPane.showMessageDialog(Main.this, "Película agregada exitosamente.");
                         }
 
                     } else {
