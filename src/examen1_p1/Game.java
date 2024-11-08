@@ -51,12 +51,20 @@ public class Game extends RentItem implements MenuActions {
         return this.getPrecio() * dias;
     }
 
-    public void listEspecificaciones() {
-        if (indiceActual < especificaciones.size()) {
-            JOptionPane.showMessageDialog(null, especificaciones.get(indiceActual));
-            indiceActual++;
-            listEspecificaciones();
+    public void listEspecificaciones(int indice) {
+        if (indice >= especificaciones.size()) {
+            indiceActual = 0;
+            return;  
         }
+
+        StringBuilder text = new StringBuilder();  
+        for (int index = indice; index < especificaciones.size(); index++) {
+            text.append("- ").append(especificaciones.get(index)).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, text.toString());
+
+        indiceActual = 0;
     }
 
     @Override
@@ -132,7 +140,7 @@ public class Game extends RentItem implements MenuActions {
             }
 
         } else if (opcion == 3) {
-            listEspecificaciones();
+            listEspecificaciones(0);
 
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese un numero de opcion valido.");
